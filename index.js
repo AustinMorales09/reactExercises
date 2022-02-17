@@ -640,7 +640,7 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'freeCodeCamp'
+      name: 'Austin'
     }
   }
   render() {
@@ -665,7 +665,7 @@ class MyComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'freeCodeCamp'
+      name: 'Austin'
     }
   }
   render() {
