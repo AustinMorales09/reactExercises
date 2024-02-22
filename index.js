@@ -601,9 +601,9 @@ Camper.propTypes = { name: PropTypes.string.isRequired};
 
 // You create state in a React component by declaring a state property on the component class in its constructor. This initializes the component with state when it is created. The state property must be set to a JavaScript object. Declaring it looks like this:
 
-// this.state = {
+this.state = {
 
-// }
+}
 // You have access to the state object throughout the life of your component. You can update it, render it in your UI, and pass it as props to child components. The state object can be as complex or as simple as you need it to be. Note that you must create a class component by extending React.Component in order to create state like this.
 
 // There is a component in the code editor that is trying to render a name property from its state. However, there is no state defined. Initialize the component with state in the constructor and assign your name to a property of name.
@@ -611,7 +611,9 @@ class StatefulComponent extends React.Component {
   constructor(props) {
     super(props);
     // Only change code below this line
-
+    this.state = {
+      name: 'Austin'
+    }
     // Only change code above this line
   }
   render() {
@@ -647,7 +649,7 @@ class MyComponent extends React.Component {
     return (
       <div>
         { /* Change code below this line */ }
-
+        <h1>{this.state.name}</h1>
         { /* Change code above this line */ }
       </div>
     );
@@ -657,7 +659,7 @@ class MyComponent extends React.Component {
 //23 Render State in the User Interface Another Way
 // There is another way to access state in a component. In the render() method, before the return statement, you can write JavaScript directly. For example, you could declare functions, access data from state or props, perform computations on this data, and so on. Then, you can assign any data to variables, which you have access to in the return statement.
 
-// In the MyComponent render method, define a const called name and set it equal to the name value in the component's state. Because you can write JavaScript directly in this part of the code, you don't have to enclose this reference in curly braces.
+// In the MyComponent render method, define a const called name and assign the name value in the component's state. Because you can write JavaScript directly in this part of the code, you don't have to enclose this reference in curly braces.
 
 // Next, in the return statement, render this value in an h1 tag using the variable name. Remember, you need to use the JSX syntax (curly braces for JavaScript) in the return statement.
 
@@ -670,12 +672,12 @@ class MyComponent extends React.Component {
   }
   render() {
     // Change code below this line
-
+    const name = this.state.name;
     // Change code above this line
     return (
       <div>
         { /* Change code below this line */ }
-
+        <h1>{name}</h1>
         { /* Change code above this line */ }
       </div>
     );
@@ -685,9 +687,9 @@ class MyComponent extends React.Component {
 // // 24 Set State with this.setState
 // The previous challenges covered component state and how to initialize state in the constructor. There is also a way to change the component's state. React provides a method for updating component state called setState. You call the setState method within your component class like so: this.setState(), passing in an object with key-value pairs. The keys are your state properties and the values are the updated state data. For instance, if we were storing a username in state and wanted to update it, it would look like this:
 
-// this.setState({
-//   username: 'Lewis'
-// });
+this.setState({
+  username: 'Lewis'
+});
 // React expects you to never modify state directly, instead always use this.setState() when state changes occur. Also, you should note that React may batch multiple state updates in order to improve performance. What this means is that state updates through the setState method can be asynchronous. There is an alternative syntax for the setState method which provides a way around this problem. This is rarely needed but it's good to keep it in mind! Please consult the React documentation for further details.
 
 // There is a button element in the code editor which has an onClick() handler. This handler is triggered when the button receives a click event in the browser, and runs the handleClick method defined on MyComponent. Within the handleClick method, update the component state using this.setState(). Set the name property in state to equal the string React Rocks!.
@@ -703,7 +705,9 @@ class MyComponent extends React.Component {
   }
   handleClick() {
     // Change code below this line
-
+      this.setState({
+        name: 'React Rocks!'
+      });
     // Change code above this line
   }
   render() {
@@ -738,7 +742,7 @@ class MyComponent extends React.Component {
       text: "Hello"
     };
     // Change code below this line
-
+    this.handleClick = this.handleClick.bind(this);
     // Change code above this line
   }
   handleClick() {
@@ -750,7 +754,7 @@ class MyComponent extends React.Component {
     return (
       <div>
         { /* Change code below this line */ }
-        <button>Click Me</button>
+        <button onClick={this.handleClick}>Click Me</button>
         { /* Change code above this line */ }
         <h1>{this.state.text}</h1>
       </div>
@@ -762,19 +766,19 @@ class MyComponent extends React.Component {
 // // 26 Use State to Toggle an Element
 // Sometimes you might need to know the previous state when updating the state. However, state updates may be asynchronous - this means React may batch multiple setState() calls into a single update. This means you can't rely on the previous value of this.state or this.props when calculating the next value. So, you should not use code like this:
 
-// this.setState({
-//   counter: this.state.counter + this.props.increment
-// });
+this.setState({
+  counter: this.state.counter + this.props.increment
+});
 // Instead, you should pass setState a function that allows you to access state and props. Using a function with setState guarantees you are working with the most current values of state and props. This means that the above should be rewritten as:
 
-// this.setState((state, props) => ({
-//   counter: state.counter + props.increment
-// }));
+this.setState((state, props) => ({
+  counter: state.counter + props.increment
+}));
 // You can also use a form without props if you need only the state:
 
-// this.setState(state => ({
-//   counter: state.counter + 1
-// }));
+this.setState(state => ({
+  counter: state.counter + 1
+}));
 // Note that you have to wrap the object literal in parentheses, otherwise JavaScript thinks it's a block of code.
 
 // MyComponent has a visibility property which is initialized to false. The render method returns one view if the value of visibility is true, and a different view if it is false.
@@ -792,11 +796,19 @@ class MyComponent extends React.Component {
       visibility: false
     };
     // Change code below this line
-
+    this.toggleVisibility = this.toggleVisibility.bind(this)
     // Change code above this line
   }
   // Change code below this line
-
+  toggleVisibility(){
+    this.setState(state => {
+      if(state.visibility == true){
+        return {visibility: false}
+      } else {
+        return {visibility: true}
+      }
+    })
+  }
   // Change code above this line
   render() {
     if (this.state.visibility) {
@@ -829,11 +841,27 @@ class Counter extends React.Component {
       count: 0
     };
     // Change code below this line
-
+    this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
+    this.reset = this.reset.bind(this);
     // Change code above this line
   }
   // Change code below this line
-
+ increment(){
+  this.setState(state =>({
+    count: state.count + 1
+  }))
+ }
+ decrement(){
+  this.setState(state =>({
+    count: state.count - 1
+  }))
+ }
+ reset(){
+  this.setState({
+    count: 0
+  })
+ }
   // Change code above this line
   render() {
     return (
@@ -866,17 +894,21 @@ class ControlledInput extends React.Component {
       input: ''
     };
     // Change code below this line
-
+    this.handleChange = this.handleChange.bind(this)
     // Change code above this line
   }
   // Change code below this line
-
+  handleChange(event){
+    this.setState({
+      input: event.target.value
+    })
+  }
   // Change code above this line
   render() {
     return (
       <div>
         { /* Change code below this line */}
-
+        <input type="text"  value={this.state.input} onChange={this.handleChange}/>
         { /* Change code above this line */}
         <h4>Controlled Input:</h4>
         <p>{this.state.input}</p>
@@ -912,7 +944,10 @@ class MyForm extends React.Component {
   }
   handleSubmit(event) {
     // Change code below this line
-    
+    event.preventDefault()
+    this.setState({
+      submit: this.state.input
+    })
     // Change code above this line
   }
   render() {
@@ -920,19 +955,19 @@ class MyForm extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           {/* Change code below this line */}
-
+        <input type="text"  value={this.state.input} onChange={this.handleChange}/>
           {/* Change code above this line */}
           <button type='submit'>Submit!</button>
         </form>
         {/* Change code below this line */}
-
+        <h1>{this.state.submit}</h1>
         {/* Change code above this line */}
       </div>
     );
   }
 }
 
-// // 30 Pass State as Props to Child ComponentsPassed
+// // 30 Pass State as Props to Child Components
 // You saw a lot of examples that passed props to child JSX elements and child React components in previous challenges. You may be wondering where those props come from. A common pattern is to have a stateful component containing the state important to your app, that then renders child components. You want these components to have access to some pieces of that state, which are passed in as props.
 
 // For example, maybe you have an App component that renders a Navbar, among other components. In your App, you have state that contains a lot of user information, but the Navbar only needs access to the user's username so it can display it. You pass that piece of state to the Navbar component as a prop.
@@ -951,7 +986,7 @@ class MyApp extends React.Component {
     return (
        <div>
          {/* Change code below this line */}
-         <Navbar />
+         <Navbar name={this.state.name}/>
          {/* Change code above this line */}
        </div>
     );
@@ -966,7 +1001,7 @@ class Navbar extends React.Component {
     return (
     <div>
       {/* Change code below this line */}
-      <h1>Hello, my name is: </h1>
+      <h1>Hello, my name is: {this.props.name}</h1>
       {/* Change code above this line */}
     </div>
     );
@@ -998,7 +1033,8 @@ class MyApp extends React.Component {
     return (
        <div>
         { /* Change code below this line */ }
-
+        <GetInput input={this.state.inputValue} handleChange={this.handleChange}/>
+        <RenderInput input={this.state.inputValue}/>
         { /* Change code above this line */ }
        </div>
     );
@@ -1048,7 +1084,7 @@ class MyComponent extends React.Component {
   }
   componentWillMount() {
     // Change code below this line
-
+    console.log('something');
     // Change code above this line
   }
   render() {
@@ -1080,7 +1116,7 @@ class MyComponent extends React.Component {
     return (
       <div>
         {/* Change code below this line */}
-        <h1>Active Users: </h1>
+        <h1>Active Users: {this.state.activeUsers}</h1>
         {/* Change code above this line */}
       </div>
     );
@@ -1107,10 +1143,10 @@ class MyComponent extends React.Component {
   }
   // Change code below this line
   componentDidMount() {
-
+    document.addEventListener('keydown', this.handleKeyPress)
   }
   componentWillUnmount() {
-
+    document.removeEventListener('keydown', this.handleKeyPress)
   }
   // Change code above this line
   handleEnter() {
@@ -1145,7 +1181,10 @@ class OnlyEvens extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     console.log('Should I update?');
     // Change code below this line
-    return true;
+    if(nextProps.value % 2 === 0){
+      return true;
+
+    }
     // Change code above this line
   }
   componentDidUpdate() {
