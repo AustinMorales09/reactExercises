@@ -8,10 +8,14 @@
 // However, because JSX is not valid JavaScript, JSX code must be compiled into JavaScript. The transpiler Babel is a popular tool for this process. For your convenience, it's already added behind the scenes for these challenges. If you happen to write syntactically invalid JSX, you will see the first test in these challenges fail.
 
 // It's worth noting that under the hood the challenges are calling ReactDOM.render(JSX, document.getElementById('root')). This function call is what places your JSX into React's own lightweight representation of the DOM. React then uses snapshots of its own DOM to optimize updating only specific parts of the actual DOM.
-
+ReactDOM.render(JSX, document.getElementById('root'))
 // Instructions: The current code uses JSX to assign a div element to the constant JSX. Replace the div with an h1 element and add the text Hello JSX! inside it.
 
+<<<<<<< HEAD
 const JSX = <h1>Hello JSX!</h1>;
+=======
+const JSX = <h1>Hello JSX</h1>;
+>>>>>>> d80c5bd2194232001abcec7ed2a8269255e966a5
 
 // 2 React: Create a Complex JSX Element
 // The last challenge was a simple example of JSX, but JSX can represent more complex HTML as well.
@@ -39,20 +43,20 @@ const JSX = <h1>Hello JSX!</h1>;
 // Define a new constant JSX that renders a div which contains the following elements in order:
 
 // An h1, a p, and an unordered list that contains three li items. You can include any text you want within each element.
-
-// Note: When rendering multiple elements like this, you can wrap them all in parentheses, but it's not strictly required. Also notice this challenge uses a div tag to wrap all the child elements within a single parent element. If you remove the div, the JSX will no longer transpile. Keep this in mind, since it will also apply when you return JSX elements in React components.
-
-const JSX  = (
+const JSX = (
   <div>
-    <h1>Hello</h1>
-    <p>Hello</p>
+    <h1>Heading</h1>
+    <p>Para</p>
     <ul>
-      <li>Hello</li>
-      <li>Hello</li>
-      <li>Hello</li>
+
+      <li>Item</li>
+      <li>Item</li>
+      <li>Item</li>
+ 
     </ul>
   </div>
-)
+);
+// Note: When rendering multiple elements like this, you can wrap them all in parentheses, but it's not strictly required. Also notice this challenge uses a div tag to wrap all the child elements within a single parent element. If you remove the div, the JSX will no longer transpile. Keep this in mind, since it will also apply when you return JSX elements in React components.
 
 
 
@@ -65,7 +69,7 @@ const JSX  = (
 // The code editor has a JSX element similar to what you created in the last challenge. Add a comment somewhere within the provided div element, without modifying the existing h1 or p elements.
 const JSX = (
     <div>
-    {/* Heres my comment */}
+    {/* hello comment */}
       <h1>This is a block of JSX</h1>
       <p>Here's a subtitle</p>
     </div>
@@ -91,7 +95,7 @@ const JSX = (
     </div>
   );
   // Change code below this line
-ReactDOM.render(<JSX />, document.getElementById('challenge-node'));
+ReactDOM.render(JSX, document.getElementById('challenge-node'))
 
   // 5 Define an HTML Class in JSX
 // Now that you're getting comfortable writing JSX, you may be wondering how it differs from HTML.
@@ -150,16 +154,18 @@ const DemoComponent = function() {
 
 // Because a JSX component represents HTML, you could put several components together to create a more complex HTML page. This is one of the key advantages of the component architecture React provides. It allows you to compose your UI from many separate, isolated components. This makes it easier to build and maintain complex user interfaces.
 
-// The code editor has a function called MyComponent. Complete this function so it returns a single div element which contains some string of text.
+Note: The text is considered a child of the div element, so you will not be able to use a self-closing tag. */}
+const DemoComponent = function() {
+  return (
+    <div className='customClass' />
+  );
+};
 
-// Note: The text is considered a child of the div element, so you will not be able to use a self-closing tag. */}
 
 const MyComponent = function() {
   return (
-    <div>
-      Hello JSX
-    </div>
-  );
+    <div>some string of text</div>
+  )
 }
 
 //8 Create a React Component
