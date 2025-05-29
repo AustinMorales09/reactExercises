@@ -11,7 +11,8 @@
 
 // Instructions: The current code uses JSX to assign a div element to the constant JSX. Replace the div with an h1 element and add the text Hello JSX! inside it.
 
-const JSX = <h1>Hello JSX!</h1>;
+const JSX = <h1>Hello JSX!</h1>
+
 
 // 2 React: Create a Complex JSX Element
 // The last challenge was a simple example of JSX, but JSX can represent more complex HTML as well.
@@ -26,11 +27,11 @@ const JSX = <h1>Hello JSX!</h1>;
 
 // Valid JSX:
 
-<div>
+{/* <div>
   <p>Paragraph One</p>
   <p>Paragraph Two</p>
   <p>Paragraph Three</p>
-</div>
+</div> */}
 // Invalid JSX:
 
 {/* <p>Paragraph One</p>
@@ -42,18 +43,15 @@ const JSX = <h1>Hello JSX!</h1>;
 
 // Note: When rendering multiple elements like this, you can wrap them all in parentheses, but it's not strictly required. Also notice this challenge uses a div tag to wrap all the child elements within a single parent element. If you remove the div, the JSX will no longer transpile. Keep this in mind, since it will also apply when you return JSX elements in React components.
 
-const JSX  = (
-  <div>
-    <h1>Hello</h1>
-    <p>Hello</p>
-    <ul>
-      <li>Hello</li>
-      <li>Hello</li>
-      <li>Hello</li>
-    </ul>
-  </div>
-)
-
+const JSX = <div>
+  <h1>hello</h1>
+  <p>again</p>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+</div>
 
 
 
@@ -65,7 +63,7 @@ const JSX  = (
 // The code editor has a JSX element similar to what you created in the last challenge. Add a comment somewhere within the provided div element, without modifying the existing h1 or p elements.
 const JSX = (
     <div>
-    {/* Heres my comment */}
+    {/* here's a comment */}
       <h1>This is a block of JSX</h1>
       <p>Here's a subtitle</p>
     </div>
@@ -82,7 +80,8 @@ const JSX = (
 
 // As you would expect, ReactDOM.render() must be called after the JSX element declarations, just like how you must declare variables before using them.
 
-// The code editor has a simple JSX component. Use the ReactDOM.render() method to render this component to the page. You can pass defined JSX elements directly in as the first argument and use document.getElementById() to select the DOM node to render them to. There is a div with id='challenge-node' available for you to use. Make sure you don't change the JSX constant.
+// The code editor has a simple JSX component. Use the ReactDOM.render() method to render this component to the page. You can pass defined JSX elements directly in as the first argument and use document.getElementById() to select the DOM node to render them to. 
+// There is a div with id='challenge-node' available for you to use. Make sure you don't change the JSX constant.
 
 const JSX = (
     <div>
@@ -91,7 +90,8 @@ const JSX = (
     </div>
   );
   // Change code below this line
-ReactDOM.render(<JSX />, document.getElementById('challenge-node'));
+
+  ReactDOM.render(JSX, document.getElementById('challenge-node'))
 
   // 5 Define an HTML Class in JSX
 // Now that you're getting comfortable writing JSX, you may be wondering how it differs from HTML.
@@ -104,7 +104,7 @@ ReactDOM.render(<JSX />, document.getElementById('challenge-node'));
 
 // Apply a class of myDiv to the div provided in the JSX code.
 const JSX = (
-  <div className='myDiv'>
+  <div className="myDiv">
     <h1>Add a class to this div</h1>
   </div>
 );
@@ -120,7 +120,8 @@ const JSX = (
 // For example the line-break tag can be written as <br> or as <br />, but should never be written as <br>
 // </br>, since it doesn't contain any content.
 
-// In JSX, the rules are a little different. Any JSX element can be written with a self-closing tag, and every element must be closed. The line-break tag, for example, must always be written as <br /> in order to be valid JSX that can be transpiled. A <div>, on the other hand, can be written as <div /> or <div></div>. The difference is that in the first syntax version there is no way to include anything in the <div />. You will see in later challenges that this syntax is useful when rendering React components.
+// In JSX, the rules are a little different. Any JSX element can be written with a self-closing tag, and every element must be closed. The line-break tag, for example, must always be written as <br /> in order to be valid JSX that can be transpiled. A <div>, on the other hand, can be written as 
+// <div /> or <div></div>. The difference is that in the first syntax version there is no way to include anything in the <div />. You will see in later challenges that this syntax is useful when rendering React components.
 
 // Fix the errors in the code editor so that it is valid JSX and successfully transpiles. Make sure you don't change any of the content - you only need to close tags where they are needed.
 
@@ -138,13 +139,14 @@ Components are the core of React. Everything in React is a component and here yo
 
 There are two ways to create a React component. The first way is to use a JavaScript function. Defining a component in this way creates a stateless functional component. The concept of state in an application will be covered in later challenges. For now, think of a stateless component as one that can receive data and render it, but does not manage or track changes to that data. (We'll cover the second way to create a React component in the next challenge.)
 
-To create a component with a function, you simply write a JavaScript function that returns either JSX or null. One important thing to note is that React requires your function name to begin with a capital letter. Here's an example of a stateless functional component that assigns an HTML class in JSX:
- */}
+To create a component with a function, you simply write a JavaScript function that returns either JSX or null. One important thing to note is that React requires your function name to begin with a capital letter. Here's an example of a stateless functional component that assigns an HTML class in JSX:*/
+
 const DemoComponent = function() {
   return (
     <div className='customClass' />
   );
 };
+/*After being transpiled, the <div> will have a CSS class of customClass.
 
 // After being transpiled, the <div> will have a CSS class of customClass.
 
@@ -155,16 +157,13 @@ const DemoComponent = function() {
 // Note: The text is considered a child of the div element, so you will not be able to use a self-closing tag. */}
 
 const MyComponent = function() {
-  return (
-    <div>
-      Hello JSX
-    </div>
-  );
+  return <div>some string of text</div>
 }
 
 //8 Create a React Component
 // The other way to define a React component is with the ES6 class syntax. In the following example, Kitten extends React.Component:
 
+import React, { Component } from 'react'
 class Kitten extends React.Component {
   constructor(props) {
     super(props);
@@ -176,6 +175,9 @@ class Kitten extends React.Component {
     );
   }
 }
+
+
+
 // This creates an ES6 class Kitten which extends the React.Component class. So the Kitten class now has access to many useful React features, such as local state and lifecycle hooks. Don't worry if you aren't familiar with these terms yet, they will be covered in greater detail in later challenges. Also notice the Kitten class has a constructor defined within it that calls super(). It uses super() to call the constructor of the parent class, in this case React.Component. The constructor is a special method used during the initialization of objects that are created with the class keyword. It is best practice to call a component's constructor with super, and pass props to both. This makes sure the component is initialized properly. For now, know that it is standard for this code to be included. Soon you will see other uses for the constructor as well as props.
 
 // MyComponent is defined in the code editor using class syntax. Finish writing the render method so it returns a div element that contains an h1 with the text Hello React!.
@@ -186,11 +188,9 @@ class MyComponent extends React.Component {
   }
   render() {
     // Change code below this line
-    return (
-      <div>
-        <h1>Hello React!</h1>
-      </div>
-    )
+    return <div>
+            <h1>Hello React!</h1>
+          </div>
 
 
     // Change code above this line
@@ -264,9 +264,7 @@ const TypesOfFruit = () => {
 const Fruits = () => {
   return (
     <div>
-      { /* Change code below this line */ }
-    <TypesOfFruit />
-      { /* Change code above this line */ }
+      <TypeOfFruit />
     </div>
   );
 };
@@ -280,9 +278,7 @@ class TypesOfFood extends React.Component {
     return (
       <div>
         <h1>Types of Food:</h1>
-        { /* Change code below this line */ }
         <Fruits />
-        { /* Change code above this line */ }
       </div>
     );
   }
@@ -319,9 +315,7 @@ class TypesOfFood extends React.Component {
     return (
       <div>
         <h1>Types of Food:</h1>
-        { /* Change code below this line */ }
         <Fruits />
-        { /* Change code above this line */ }
         <Vegetables />
       </div>
     );
@@ -332,7 +326,9 @@ class TypesOfFood extends React.Component {
 // You may remember using the ReactDOM API in an earlier challenge to render JSX elements to the DOM. The process for rendering React components will look very similar. The past few challenges focused on components and composition, so the rendering was done for you behind the scenes. However, none of the React code you write will render to the DOM without making a call to the ReactDOM API.
 
 // Here's a refresher on the syntax: ReactDOM.render(componentToRender, targetNode). The first argument is the React component that you want to render. The second argument is the DOM node that you want to render that component within.
+const JSX = <div>
 
+</div>
 // React components are passed into ReactDOM.render() a little differently than JSX elements. For JSX elements, you pass in the name of the element that you want to render. However, for React components, you need to use the same syntax as if you were rendering a nested component, for example ReactDOM.render(<ComponentToRender />, targetNode). You use this syntax for both ES6 class components and functional components.
 
 // Both the Fruits and Vegetables components are defined for you behind the scenes. Render both components as children of the TypesOfFood component, then render TypesOfFood to the DOM. There is a div with id='challenge-node' available for you to use.
@@ -352,9 +348,8 @@ class TypesOfFood extends React.Component {
     );
   }
 };
-
 // Change code below this line
-ReactDOM.render(<TypesOfFood />, document.getElementById('challenge-node'));
+ReactDOM.render(<TypesOfFood/>, document.getElementById('challenge-node'))
 
 // 13 Write a React Component from Scratch
 // Now that you've learned the basics of JSX and React components, it's time to write a component on your own. React components are the core building blocks of React applications so it's important to become very familiar with writing them. Remember, a typical React component is an ES6 class which extends React.Component. It has a render method that returns HTML (from JSX) or null. This is the basic form of a React component. Once you understand this well, you will be prepared to start building more complex React projects.
@@ -363,18 +358,20 @@ ReactDOM.render(<TypesOfFood />, document.getElementById('challenge-node'));
 
 // Render this component to the DOM using ReactDOM.render(). There is a div with id='challenge-node' available for you to use.
 class MyComponent extends React.Component{
-  constructor(props){
-    super(props);
-  }
-  render(){
-    return(
-          <div id="challenge-node">
-                 <h1>My First React Component!</h1>
-          </div>
-    );
-  }
-};
-ReactDOM.render(<MyComponent/>, document.getElementById("challenge-node"));
+    constructor(props){
+      super(props)
+    }
+    render(){
+      return (
+        <div>
+          <h1>My First React Component!</h1>
+        </div>
+      )
+    }
+}
+ReactDOM.render(<MyComponent/>, document.getElementById('challenge-node'));
+
+
 
 
 // 14 Pass Props to a Stateless Functional Component
@@ -393,7 +390,7 @@ const CurrentDate = (props) => {
   return (
     <div>
       { /* Change code below this line */ }
-      <p>The current date is: {props.date} </p>
+      <p>The current date is: {props.date}</p>
       { /* Change code above this line */ }
     </div>
   );
@@ -408,7 +405,7 @@ class Calendar extends React.Component {
       <div>
         <h3>What date is it?</h3>
         { /* Change code below this line */ }
-        <CurrentDate date={Date()}/>
+        <CurrentDate date={Date()} />
         { /* Change code above this line */ }
       </div>
     );
@@ -421,8 +418,11 @@ class Calendar extends React.Component {
 <ParentComponent>
   <ChildComponent colors={["green", "blue", "red"]} />
 </ParentComponent>
-const ChildComponent = (props) => <p>{props.colors.join(', ')}</p>
-// The child component then has access to the array property colors. Array methods such as join() can be used when accessing the property.  This will join all colors array items into a comma separated string and produce: <p>green, blue, red</p> Later, we will learn about other common methods to render arrays of data in React.
+// The child component then has access to the array property colors. Array methods such as join() can be used when accessing the property. 
+const ChildComponent = (props) => <p>{props.colors.join(', ')}</p> 
+// This will join all colors array items into a comma separated string and produce: 
+{/* <p>green, blue, red</p> */}
+//  Later, we will learn about other common methods to render arrays of data in React.
 
 // There are List and ToDo components in the code editor. When rendering each List from the ToDo component, pass in a tasks property assigned to an array of to-do tasks, for example ["walk dog", "workout"]. Then access this tasks array in the List component, showing its value within the p element. Use join(", ") to display the props.tasksarray in the p element as a comma separated list. Today's list should have at least 2 tasks and tomorrow's should have at least 3 tasks.
 
@@ -442,9 +442,9 @@ class ToDo extends React.Component {
         <h1>To Do Lists</h1>
         <h2>Today</h2>
         { /* Change code below this line */ }
-        <List tasks={['Walk', 'Cook']}/>
+        <List tasks={['eat', 'sleep']}/>
         <h2>Tomorrow</h2>
-        <List  tasks={['Walk', 'Cook', 'Clean']}/>
+        <List  tasks={['eat','sleep', 'repeat']}/>
         { /* Change code above this line */ }
       </div>
     );
@@ -453,7 +453,9 @@ class ToDo extends React.Component {
 
 
 // 16 Use Default Props
-// React also has an option to set default props. You can assign default props to a component as a property on the component itself and React assigns the default prop if necessary. This allows you to specify what a prop value should be if no value is explicitly provided. For example, if you declare MyComponent.defaultProps = { location: 'San Francisco' }, you have defined a location prop that's set to the string San Francisco, unless you specify otherwise. React assigns default props if props are undefined, but if you pass null as the value for a prop, it will remain null.
+// React also has an option to set default props. You can assign default props to a component as a property on the component itself and React assigns the default prop if necessary. This allows you to specify what a prop value should be if no value is explicitly provided. For example, if you declare 
+// MyComponent.defaultProps = { location: 'San Francisco' },
+//  you have defined a location prop that's set to the string San Francisco, unless you specify otherwise. React assigns default props if props are undefined, but if you pass null as the value for a prop, it will remain null.
 
 // The code editor shows a ShoppingCart component. Define default props on this component which specify a prop items with a value of 0.
 const ShoppingCart = (props) => {
@@ -464,9 +466,9 @@ const ShoppingCart = (props) => {
   )
 };
 // Change code below this line
-ShoppingCart.defaultProps = {
-  items: 0
-};
+ShoppingCart.defaultProps = { items: 0};
+
+
 // 17 Override Default Props
 // The ability to set default props is a useful feature in React. The way to override the default props is to explicitly set the prop values for a component.
 
@@ -499,11 +501,10 @@ class ShoppingCart extends React.Component {
 // It's considered a best practice to set propTypes when you know the type of a prop ahead of time. You can define a propTypes property for a component in the same way you defined defaultProps. Doing this will check that props of a given key are present with a given type. Here's an example to require the type function for a prop called handleClick:
 
 MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }
-
 // In the example above, the PropTypes.func part checks that handleClick is a function. Adding isRequired tells React that handleClick is a required property for that component. You will see a warning if that prop isn't provided. Also notice that func represents function. Among the seven JavaScript primitive types, function and boolean (written as bool) are the only two that use unusual spelling. In addition to the primitive types, there are other types available. For example, you can check that a prop is a React element. Please refer to the documentation for all of the options.
 
-// Note: As of React v15.5.0, PropTypes is imported independently from React, like this: 
-import PropTypes from 'prop-types';
+// Note: As of React v15.5.0, PropTypes is imported independently from React, like this:
+//  import PropTypes from 'prop-types';
 
 // Define propTypes for the Items component to require quantity as a prop and verify that it is of type number.
 const Items = (props) => {
@@ -511,7 +512,7 @@ const Items = (props) => {
 };
 
 // Change code below this line
-Items.propTypes = {quantity: PropTypes.number.isRequired}
+Items.propTypes = {quantity: PropTypes.number.isRequired};
 // Change code above this line
 
 Items.defaultProps = {
@@ -561,7 +562,7 @@ class ResetPassword extends React.Component {
           <h3>We've generated a new temporary password for you.</h3>
           <h3>Please reset this password from your account settings ASAP.</h3>
           { /* Change code below this line */ }
-        <ReturnTempPassword tempPassword='xxxxxxxx'/>
+          <ReturnTempPassword  tempPassword='12345678'/>
           { /* Change code above this line */ }
         </div>
     );
@@ -593,8 +594,12 @@ class CampSite extends React.Component {
   }
 };
 // Change code below this line
-const Camper = (props) => <p>{props.name}</p>;
-Camper.propTypes = { name: PropTypes.string.isRequired};
+const Camper = (props) => <p>{props.name}</p> //defines camper component
+
+Camper.defaultProps = {name: 'CamperBot'}; //sets default props
+
+Camper.propTypes = {name: PropTypes.string.isRequired}; //makes sure name is required and a string
+
 
 // 21 Create a Stateful Component
 // One of the most important topics in React is state. State consists of any data your application needs to know about, that can change over time. You want your apps to respond to state changes and present an updated UI when necessary. React offers a nice solution for the state management of modern web applications.
